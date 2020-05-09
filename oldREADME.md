@@ -1,56 +1,5 @@
 
-# MongoDB Installation Instructions
-
-- 05/09/20
-- onl01-dtsc-pt-041320
-
-
-# Instructions for Windows Users (from James)
-
-### RESOURCES FOR WINDOWS:
-- [Video on installing MongoDB by Downloading from Mongo](https://www.youtube.com/watch?v=FwMwO8pXfq)
-- [Article on Getting MongoDB Working in GitBash](https://teamtreehouse.com/community/how-to-setup-mongodb-on-windows-cmd-or-gitbash-with-shortcuts)
-
-### Installation Steps
-1. Download and install MongoDB from  https://www.mongodb.com/download-center/community 
-    - Watch the video above to instructions on what options to select.
-2. After installation is complete, open a GitBash Terminal As Administrator
-    - In the Start Menu find and right click on GitBash > Run as Administrator. 
-
-3. You must add the bin folder inside of MongoDB's Program Files to your system path.
-    - To edit system path (see above article) type the following in GitBash:
-    ```shell
-    rundll32 sysdm.cpl,EditEnvironmentVariables```
-    - In the window that pops-up, edit Path and Add `C:/Programs Files/MongoDB/<whatever version is install>/bin` to the Path variable.
-    - Close the settings window when complete.
-    
-4. You must manually create the `c:/data` and `c:/data/db` folders SEPERATELY
-    - Use gitbash to create c:/data FIRST, cd into data and then mkdir db  
-    - This replaces the official step in the notebook below (`sudo mkdir -p /data/db`)
-
-5. Give the directory the correct permission: 
-```bash
-sudo chown -R `id -un` /data/db
-```
-
-5. (You may still need to run `conda install mongodb` even though we installed it directly.
-
-6. Finall, make sure that pymongo is installed 
-```bash
-conda install pymongo
-```
-
-7. Now you should be all set and `mongod`should work!
-
-# Instructions for MacOS Catalina
-
-
-- Follow the instructions from these 2 links:
-    1. https://zellwk.com/blog/install-mongodb/
-    2. https://zellwk.com/blog/local-mongodb/
-
-___
-# ORIGINAL LESSON BELOW:
+# MongoDB
 
 ## Introduction
 
@@ -161,12 +110,6 @@ We'll do this now in the cells below as an example.
 
 
 ```python
-
-```
-
-
-```python
-
 import pymongo
 ```
 
@@ -218,7 +161,7 @@ results
 
 
 
-    <pymongo.results.InsertOneResult at 0x164be558a48>
+    <pymongo.results.InsertOneResult at 0x104cd7908>
 
 
 
@@ -232,7 +175,7 @@ results.inserted_id
 
 
 
-    ObjectId('5eb738659bc3b341a7cd54e6')
+    ObjectId('5d35ffb254722712a2675be8')
 
 
 
@@ -257,9 +200,9 @@ results_2.inserted_ids
 
 
 
-    [ObjectId('5eb738689bc3b341a7cd54e7'),
-     ObjectId('5eb738689bc3b341a7cd54e8'),
-     ObjectId('5eb738689bc3b341a7cd54e9')]
+    [ObjectId('5d35ffb254722712a2675be9'),
+     ObjectId('5d35ffb254722712a2675bea'),
+     ObjectId('5d35ffb254722712a2675beb')]
 
 
 
@@ -280,10 +223,10 @@ for x in query_1:
     print(x)
 ```
 
-    {'_id': ObjectId('5eb738659bc3b341a7cd54e6'), 'name': 'John Doe', 'address': '123 elm street', 'age': 28}
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e7'), 'name': 'Jane Doe', 'address': '234 elm street', 'age': 7}
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e8'), 'name': 'Santa Claus', 'address': 'The North Pole', 'age': 547}
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e9'), 'name': 'John Doe jr.', 'address': '', 'age': 0.5}
+    {'_id': ObjectId('5d35ffb254722712a2675be8'), 'name': 'John Doe', 'address': '123 elm street', 'age': 28}
+    {'_id': ObjectId('5d35ffb254722712a2675be9'), 'name': 'Jane Doe', 'address': '234 elm street', 'age': 7}
+    {'_id': ObjectId('5d35ffb254722712a2675bea'), 'name': 'Santa Claus', 'address': 'The North Pole', 'age': 547}
+    {'_id': ObjectId('5d35ffb254722712a2675beb'), 'name': 'John Doe jr.', 'address': '', 'age': 0.5}
 
 
 In the cell above, we grabbed every field from every item in the entire collection. There are times where this is probably too much data for it to be useful for us. 
@@ -297,10 +240,10 @@ for item in query_2:
     print(item)
 ```
 
-    {'_id': ObjectId('5eb738659bc3b341a7cd54e6'), 'name': 'John Doe', 'address': '123 elm street'}
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e7'), 'name': 'Jane Doe', 'address': '234 elm street'}
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e8'), 'name': 'Santa Claus', 'address': 'The North Pole'}
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e9'), 'name': 'John Doe jr.', 'address': ''}
+    {'_id': ObjectId('5d35ffb254722712a2675be8'), 'name': 'John Doe', 'address': '123 elm street'}
+    {'_id': ObjectId('5d35ffb254722712a2675be9'), 'name': 'Jane Doe', 'address': '234 elm street'}
+    {'_id': ObjectId('5d35ffb254722712a2675bea'), 'name': 'Santa Claus', 'address': 'The North Pole'}
+    {'_id': ObjectId('5d35ffb254722712a2675beb'), 'name': 'John Doe jr.', 'address': ''}
 
 
 In this method, we created a dictionary with the key of every item we want, and a `1` as the value to make clear that we want that field returned. 
@@ -314,10 +257,10 @@ for item in query_3:
     print(item)
 ```
 
-    {'_id': ObjectId('5eb738659bc3b341a7cd54e6'), 'name': 'John Doe', 'address': '123 elm street'}
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e7'), 'name': 'Jane Doe', 'address': '234 elm street'}
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e8'), 'name': 'Santa Claus', 'address': 'The North Pole'}
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e9'), 'name': 'John Doe jr.', 'address': ''}
+    {'_id': ObjectId('5d35ffb254722712a2675be8'), 'name': 'John Doe', 'address': '123 elm street'}
+    {'_id': ObjectId('5d35ffb254722712a2675be9'), 'name': 'Jane Doe', 'address': '234 elm street'}
+    {'_id': ObjectId('5d35ffb254722712a2675bea'), 'name': 'Santa Claus', 'address': 'The North Pole'}
+    {'_id': ObjectId('5d35ffb254722712a2675beb'), 'name': 'John Doe jr.', 'address': ''}
 
 
 Note that we can't use both methods at the same time. We have to either specify what we do want, and make sure that every value is a 1, or specify what we don't want, and make sure every corresponding value is a 0. If we pass in a dictionary containing both, we'll get an error in return. 
@@ -338,7 +281,7 @@ for item in query_4:
     print(item)
 ```
 
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e8'), 'name': 'Santa Claus', 'address': 'The North Pole', 'age': 547}
+    {'_id': ObjectId('5d35ffb254722712a2675bea'), 'name': 'Santa Claus', 'address': 'The North Pole', 'age': 547}
 
 
 We can also filter queries by using **_Modifiers_**. For instance, let's say we wanted to get record for every person in our collection older than 20. We can signify this with the 'greater than' modifier, `"$gt"` and pass in the corresponding value. 
@@ -350,8 +293,8 @@ for item in query_5:
     print(item)
 ```
 
-    {'_id': ObjectId('5eb738659bc3b341a7cd54e6'), 'name': 'John Doe', 'address': '123 elm street', 'age': 28}
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e8'), 'name': 'Santa Claus', 'address': 'The North Pole', 'age': 547}
+    {'_id': ObjectId('5d35ffb254722712a2675be8'), 'name': 'John Doe', 'address': '123 elm street', 'age': 28}
+    {'_id': ObjectId('5d35ffb254722712a2675bea'), 'name': 'Santa Claus', 'address': 'The North Pole', 'age': 547}
 
 
 We can even pass in **_Regular Expressions_** to filter text data and pattern match! You don't know regular expressions yet, but you will learn them in a few sections. When you do, we encourage you to try using them within a mongodb query!
@@ -373,7 +316,7 @@ for item in query_6:
     print(item)
 ```
 
-    {'_id': ObjectId('5eb738659bc3b341a7cd54e6'), 'name': 'John Doe', 'address': '123 elm street', 'age': 29, 'birthday': '02/20/1986'}
+    {'_id': ObjectId('5d35ffb254722712a2675be8'), 'name': 'John Doe', 'address': '123 elm street', 'age': 29, 'birthday': '02/20/1986'}
 
 
 In the cell above, the first update we make updates the value for a key that already exists in the document. The second update adds an entirely new key-value pair to the document. As we can see, the syntax for both is the same (just like when we work with Python dictionaries), and is very easy and intuitive to use. 
@@ -411,8 +354,8 @@ for item in query_6:
     print(item)
 ```
 
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e8'), 'name': 'Santa Claus', 'address': 'The North Pole', 'age': 547}
-    {'_id': ObjectId('5eb738689bc3b341a7cd54e9'), 'name': 'John Doe jr.', 'address': '', 'age': 0.5}
+    {'_id': ObjectId('5d35ffb254722712a2675bea'), 'name': 'Santa Claus', 'address': 'The North Pole', 'age': 547}
+    {'_id': ObjectId('5d35ffb254722712a2675beb'), 'name': 'John Doe jr.', 'address': '', 'age': 0.5}
 
 
 
@@ -423,7 +366,7 @@ mycollection.delete_many({})
 
 
 
-    <pymongo.results.DeleteResult at 0x164be58f148>
+    <pymongo.results.DeleteResult at 0x104d15388>
 
 
 
@@ -432,8 +375,3 @@ mycollection.delete_many({})
 ## Summary
 
 In this lesson, we learned about how to get mongoDB up and running on our machine, how to connect to it, and how to do some basic CRUD tasks with Python!
-
-
-```python
-
-```
