@@ -8,7 +8,7 @@
 # Instructions for Windows Users (from James)
 
 ### RESOURCES FOR WINDOWS:
-- [Video on installing MongoDB by Downloading from Mongo](https://www.youtube.com/watch?v=FwMwO8pXfq)
+- [Video on installing MongoDB by Downloading from Mongo](https://youtu.be/FwMwO8pXfq0) - UPDATED 05/10/20
 - [Article on Getting MongoDB Working in GitBash](https://teamtreehouse.com/community/how-to-setup-mongodb-on-windows-cmd-or-gitbash-with-shortcuts)
 
 ### Installation Steps
